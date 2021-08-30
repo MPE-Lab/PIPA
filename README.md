@@ -116,7 +116,7 @@ for (ff in feature_subset_fnms){
                             neighbor_size_byFrac= seq(0.05,0.25,by=0.15),
                             KM_xlab='Survivals',area_split=TRUE)
   
-  # Post-PIPA visualization:: feature (heat-map?) & box-plot for selected features
+  # Post-PIPA visualization:: feature heat-map & box-plot for selected features
   # subsetting for PIPA-selected cell features
   selected_feature <- read.csv(file = file.path(subtype_subdir,'selectedCellFeatures.csv'), as.is = TRUE)
   cell_data_sub <- PIPA::cell_data[, c("cell_ids",selected_feature$features)]
