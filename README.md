@@ -1,19 +1,22 @@
 # PIPA
 Prognosis-informed Phenotype Assignment (PIPA): A Novel Method for Unsupervised Discovery of Cell Phenotypes with Prognostic Significance in the Tumor Microenvironment
 
-### Package installation
-devtools::install_github('MPE-Lab/PIPA');
+## Initialization
+````
+# Package installation
+devtools::install_github('MPE-Lab/PIPA')
 library(PIPA)
 
-### Set paths
+# Set paths
 root_dir <- "C:/Desktop/";
-results_folder <- 'PIPA_analysis';
-output_dir <- file.path(root_dir, results_folder);
+results_folder <- 'PIPA_analysis'
+output_dir <- file.path(root_dir, results_folder)
 dir.create(output_dir)
 
-### Set parameters
-Lasso_run_no<- 3 #min 2 repeats;
+# Set parameters
+Lasso_run_no<- 3 #min = 2, default = 10
 min_cluster_size <- 5 #please choose according the problem, this is ONLY for demonstration purpose
+````
 
 ## Prepare data for feature selection
 ````
@@ -33,10 +36,9 @@ featureSelection_wrapper(data=cell_data_sub, surv_data=surv_data,
 
 ## Build phenotyping model using each (or the user-selected) cell feature subsets determined above
 ````
-
-# folder names for each candidate feature subsets
+# get folder names for each candidate feature subsets
 feature_subset_fnms <- list.files(path = step1_dir, pattern = "^detection_rate")
-# manual selection/filtering for feature subsets
+# MANUAL selection (exclusion) for feature subsets
 feature_subset_fnms <- setdiff(feature_subset_fnms, 'detection_rate0.9')
  
 # loop over individual candidate feature subsets
