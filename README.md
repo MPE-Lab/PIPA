@@ -137,3 +137,23 @@ for (ff in feature_subset_fnms){
 } 
 
 ````
+## Visualization for comparing parameter settings e.g. (i) detection rates for optimal feature selection (ii) batch_size/max_batch/no_of_random_merging 
+````
+# Viz: (a) cell count and (b) cell detection of patients/tumors, for each phenotypes
+param_bnm='detection_rate'
+output_dir2 <- file.path(step1_dir, paste0("Viz_all_",param_bnm)); dir.create(output_dir2)
+cutoff_pval <- 0.05 # this is only for demonstration, please use cutoff 0.005
+pheno_dir_path <- paste0('final_pheno/merged_pheno_P',cutoff_pval)
+Viz_cellcountNdetection_byParam(root_dir=step1_dir,
+                                output_dir= output_dir2,
+                                pheno_dir_path=pheno_dir_path,
+                                param_bnm=param_bnm,
+                                tissue_area_list=c('T','S'))
+
+# Forest plot summarizing Cox PH regression analysis results based on density quartiles of PP, IP, GP
+ForesPlot_denQ_CoxPH(root_dir=step1_dir, output_dir= output_dir2,
+                     pheno_dir_path=pheno_dir_path,
+                     param_bnm='detection_rate',
+                     Cox_result_folderNm='density_surv/cat')
+
+````
