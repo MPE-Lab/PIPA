@@ -157,9 +157,9 @@ Viz_cellcountNdetection_byParam(root_dir=step1_dir,
                                 tissue_area_list=c('T','S'))
 
 # Forest plot summarizing Cox PH regression analysis results based on density quartiles of PP, IP, GP
-ForesPlot_denQ_CoxPH(root_dir=step1_dir, output_dir= output_dir2,
-                     pheno_dir_path=pheno_dir_path,
-                     param_bnm='detection_rate',
-                     Cox_result_folderNm='density_surv/cat')
+Viz_foresPlot_denQ_CoxPH(root_dir=step1_dir, output_dir= output_dir2,
+                         pheno_dir_path=pheno_dir_path,
+                         param_bnm='detection_rate',
+                         Cox_result_folderNm='density_surv/cat')
 
 ````
