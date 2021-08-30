@@ -14,7 +14,7 @@ output_dir <- file.path(root_dir, results_folder)
 dir.create(output_dir)
 
 # Set parameters
-Lasso_run_no<- 3 #min = 2, default = 10
+Lasso_run_no<- 10 #min = 2, default = 10
 min_cluster_size <- 5 #please choose according the problem, this is ONLY for demonstration purpose
 ````
 
