@@ -4,7 +4,9 @@ Prognosis-informed Phenotype Assignment (PIPA): A Novel Method for Unsupervised 
 ## Initialization
 ````
 # Package installation
-devtools::install_github('MPE-Lab/PIPA')
+# devtools::install_github('MPE-Lab/PIPA')
+package_root_dir <- 'C:/Desktop'
+install.packages(file.path(package_root_dir,'PIPA.tar.gz'), repos = NULL, type = 'source')
 library(PIPA)
 
 # Set paths
