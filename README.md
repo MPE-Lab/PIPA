@@ -97,6 +97,7 @@ for (ff in feature_subset_fnms){
                                 uni_Cox_fnm='uniCoxPH_summary.txt',uni_P_cutoff=cutoff_pval)
   if(out==(-1))next
   
+  
   # Post-PIPA analysis:: calculate cell density of PP/IP/GP phenotypes
   # compute phenotype density
   calculate_pheno_density(area_data=area_data,  
@@ -116,21 +117,24 @@ for (ff in feature_subset_fnms){
                             neighbor_size_byFrac= seq(0.05,0.25,by=0.15),
                             KM_xlab='Survivals',area_split=TRUE)
   
-  # Post-PIPA visualization:: feature heat-map & box-plot for selected features
-  # subsetting for PIPA-selected cell features
+  # =========================
+  # Post-PIPA visualization 
+  # =========================
   selected_feature <- read.csv(file = file.path(subtype_subdir,'selectedCellFeatures.csv'), as.is = TRUE)
+  
+  # heat map - distribution of PIPA-selected cell features by phenotypes
   cell_data_sub <- PIPA::cell_data[, c("cell_ids",selected_feature$features)]
   Viz_feature_boxplot_byPheno(cell_data= cell_data_sub,plot_bnm='PIPA_features',outlier_removal=TRUE,
                               pheno_levels = c('PP','IP','GP'),
                               pheno_dir=merged_pheno_dir, output_dir=merged_pheno_dir,
                               ncol = 4, plot_height = 16, plot_width = 15)
-  
+  # box plot - distribution of PIPA-selected cell features by phenotypes
   cell_data_sub <- PIPA::cell_data[, c("cell_ids","tumor_ids",selected_feature$features)]
   Viz_feature_heatmap_byPheno(cell_data= cell_data_sub,
                               pheno_dir=merged_pheno_dir, output_dir=merged_pheno_dir,
                               pheno_levels = c('PP','IP','GP'),
                               column_scale=TRUE)
-  
+  # UMAP - relatedness of PIPA-derived phenotypes in the PIPA-selected feature space, labelled by phenotypes & features
   cell_data_sub <- PIPA::cell_data[, c("cell_ids",selected_feature$features)]
   Viz_feature_UMAP(cell_data= cell_data_sub, downspl_size=100,
                    pheno_dir=merged_pheno_dir, output_dir=merged_pheno_dir,
